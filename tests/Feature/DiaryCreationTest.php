@@ -3,6 +3,7 @@
 use App\Models\Diary;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 use function Pest\Laravel\actingAs;
 
@@ -102,4 +103,20 @@ test('user unable to access another diary entry due to different id', function (
     $same_user = $diary->user_id === $user2->id;
 
     expect($same_user)->toBeFalse();
+});
+
+
+
+
+// Also unit test:
+test('title is required for diary entry', function () {
+    $data = ['title' => '', 'entry' => 'My thoughts'];
+
+    $validator = Validator::make($data, [
+        'title' => 'required',
+        'entry' => 'nullable',
+    ]);
+
+    expect($validator->fails())->toBeTrue();
+    expect($validator->errors()->has('title'))->toBeTrue();
 });
