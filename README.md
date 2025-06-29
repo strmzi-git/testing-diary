@@ -1,3 +1,7 @@
+Steps to execute the tests:
+
+
+
 Test plan
 User story 1
 As a user I want to create new diary entries with a title and content, so that I can reflect on my daily thoughts and experiences.
