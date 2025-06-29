@@ -1,8 +1,16 @@
 Steps to execute the tests:
 
+Execute:
+cp .env.example .env
+Run:
+docker-compose up --build -d
+Go into container:
+docker exec -it laravel_app bash
+Run migrations:
+php artisan migrate:fresh
+Run test:
+php artisan test
 
-
-Test plan
 User story 1
 As a user I want to create new diary entries with a title and content, so that I can reflect on my daily thoughts and experiences.
 Happy path
@@ -15,7 +23,7 @@ Diary entry is assigned to a user if logged in and new diary entry is created
 Diary entry is not saved to the database if the title field is missing.
 
 Unit test covers the following:
-Verifies that a entry can be created and assigned to a user 
+Title is required to pass validator logic (in controller) for new diary entry to be saved
 
 User story 2
 As a user, I want to view the full content of a specific diary entry, so that I can reflect on what I’ve written in the past.
